@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Website</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: white;
+        }
+
+        .welcome {
+            text-align: center;
+            padding: 50px;
+        }
+
+        .welcome h1 {
+            font-size: 60px;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #00dbde, #fc00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .welcome p {
+            font-size: 20px;
+            color: #d5d5d5;
+            margin-bottom: 35px;
+        }
+
+        .get-started {
+            display: inline-block;
+            padding: 16px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+
+            background: linear-gradient(90deg, #00dbde, #fc00ff);
+
+            box-shadow: 0 0 15px rgba(0, 219, 222, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .get-started:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow:
+                0 0 20px #00dbde,
+                0 0 40px #fc00ff;
+        }
+
+        .get-started:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="welcome">
+        <h1>Welcome to My Website</h1>
+
+        <p>
+            Discover something amazing. Your journey starts here.
+        </p>
+
+        <a href="time.html" class="get-started">
+            Get Started →
+        </a>
+    </div>
+
+</body>
+</html>
