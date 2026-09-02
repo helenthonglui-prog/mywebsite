@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gadget Store</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #f5f7fb;
+    color: #222;
+}
+
+/* NAVBAR */
+
+.navbar {
+    background: #111827;
+    color: white;
+    padding: 15px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #38bdf8;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.cart {
+    background: #38bdf8;
+    padding: 9px 15px;
+    border-radius: 25px;
+    color: #111827;
+    font-weight: bold;
+}
+
+/* HERO */
+
+.hero {
+    padding: 60px 6%;
+    background: linear-gradient(135deg, #0f172a, #1e3a8a);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.hero-text {
+    max-width: 600px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.hero h1 span {
+    color: #38bdf8;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #dbeafe;
+    margin-bottom: 25px;
+}
+
+.shop-btn {
+    display: inline-block;
+    background: #38bdf8;
+    color: #0f172a;
+    padding: 13px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.shop-btn:hover {
+    transform: scale(1.08);
+    background: white;
+}
+
+.hero-icon {
+    font-size: 150px;
+}
+
+/* SEARCH */
+
+.search-area {
+    padding: 25px 6%;
+    display: flex;
+    justify-content: center;
+}
+
+.search-box {
+    width: 100%;
+    max-width: 700px;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    font-size: 16px;
+    outline: none;
+}
+
+/* CATEGORIES */
+
+.categories {
+    padding: 10px 6% 30px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.category {
+    border: none;
+    background: white;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.category:hover,
+.category.active {
+    background: #2563eb;
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* PRODUCTS */
+
+.products {
+    padding: 20px 6% 60px;
+}
+
+.products h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+/* PRODUCT CARD */
+
+.product-card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.product-image {
+    height: 200px;
+    background: #eef2ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 85px;
+}
+
+.favorite {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: white;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 19px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.product-info {
+    padding: 18px;
+}
+
+.product-info h3 {
+    font-size: 19px;
+    margin-bottom: 7px;
+}
+
+.category-name {
+    font-size: 13px;
+    color: #64748b;
+}
+
+.price {
+    font-size: 21px;
+    font-weight: bold;
+    color: #2563eb;
+    margin: 12px 0;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.add-cart {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: #111827;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.add-cart:hover {
+    background: #2563eb;
+}
+
+/* FOOTER */
+
+footer {
+    background: #111827;
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+footer p {
+    color: #94a3b8;
+    margin-top: 8px;
+}
+
+/* MOBILE */
+
+@media(max-width: 700px) {
+
+    .hero {
+        text-align: center;
+        padding: 45px 6%;
+    }
+
+    .hero h1 {
+        font-size: 35px;
+    }
+
+    .hero-icon {
+        display: none;
+    }
+
+    .navbar {
+        padding: 14px 5%;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .product-image {
+        height: 150px;
+        font-size: 60px;
+    }
+
+    .product-info {
+        padding: 12px;
+    }
+
+    .product-info h3 {
+        font-size: 16px;
+    }
+
+    .price {
+        font-size: 18px;
+    }
+}
+
+@media(max-width: 400px) {
+
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        Gadget<span>Zone</span>
+    </div>
+
+    <div class="nav-right">
+        <div class="cart">
+            🛒 Cart <span id="cartCount">0</span>
+        </div>
+    </div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-text">
+
+        <h1>
+            Upgrade Your <span>Phone</span>
+        </h1>
+
+        <p>
+            Premium accessories for your smartphone.
+            Cases, chargers, earphones, tempered glass and more.
+        </p>
+
+        <a href="#products" class="shop-btn">
+            Shop Now →
+        </a>
+
+    </div>
+
+    <div class="hero-icon">
+        📱
+    </div>
+
+</section>
+
+
+<!-- SEARCH -->
+
+<div class="search-area">
+
+    <input
+        type="text"
+        id="search"
+        class="search-box"
+        placeholder="🔍 Search accessories..."
+    >
+
+</div>
+
+
+<!-- CATEGORIES -->
+
+<div class="categories">
+
+    <button class="category active" onclick="filterProducts('all')">
+        All
+    </button>
+
+    <button class="category" onclick="filterProducts('cover')">
+        📱 Back Covers
+    </button>
+
+    <button class="category" onclick="filterProducts('earphone')">
+        🎧 Earphones
+    </button>
+
+    <button class="category" onclick="filterProducts('charger')">
+        🔌 Chargers
+    </button>
+
+    <button class="category" onclick="filterProducts('glass')">
+        🛡️ Tempered Glass
+    </button>
+
+    <button class="category" onclick="filterProducts('powerbank')">
+        🔋 Power Banks
+    </button>
+
+</div>
+
+
+<!-- PRODUCTS -->
+
+<section class="products" id="products">
+
+<h2>🔥 Popular Accessories</h2>
+
+<div class="product-grid" id="productGrid">
+
+
+<!-- PRODUCT 1 -->
+
+<div class="product-card" data-category="earphone">
+
+    <button class="favorite" onclick="favorite(this)">
+        ♡
+    </button>
+
+    <div class="product-image">
+        🎧
+    </div>
+
+    <div class="product-info">
+
+        <h3>Wireless Earbuds</h3>
+
+        <div class="category-name">
+            Earphones
+        </div>
+
+        <div class="price">
+            ₹899
+            <span class="old-price">₹1,299</span>
+        </div>
+
+        <button class="add-cart" onclick="addToCart()">
+            Add to Cart
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- PRODUCT 2 -->
+
+<div class="product-card" data-category="charger">
+
+    <button class="favorite" onclick="favorite(this)">
+        ♡
+    </button>
+
+    <div class="product-image">
+        🔌
+    </div>
+
+    <div class="product-info">
+
+        <h3>Fast Charger 25W</h3>
+
+        <div class="category-name">
+            Charger
+        </div>
+
+        <div class="price">
+            ₹599
+            <span class="old-price">₹799</span>
+        </div>
+
+        <button class="add-cart" onclick="addToCart()">
+            Add to Cart
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- PRODUCT 3 -->
+
+<div class="product-card" data-category="cover">
+
+    <button class="favorite" onclick="favorite(this)">
+        ♡
+    </button>
+
+    <div class="product-image">
+        📱
+    </div>
+
+    <div class="product-info">
+
+        <h3>Premium Phone Cover</h3>
+
+        <div class="category-name">
+            Back Cover
+        </div>
+
+        <div class="price">
+            ₹299
+            <span class="old-price">₹499</span>
+        </div>
+
+        <button class="add-cart" onclick="addToCart()">
+            Add to Cart
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- PRODUCT 4 -->
+
+<div class="product-card" data-category="glass">
+
+    <button class="favorite" onclick="favorite(this)">
+        ♡
+    </button>
+
+    <div class="product-image">
+        🛡️
+    </div>
+
+    <div class="product-info">
+
+        <h3>9D Tempered Glass</h3>
+
+        <div class="category-name">
+            Screen Protector
+        </div>
+
+        <div class="price">
+            ₹149
+            <span class="old-price">₹249</span>
+        </div>
+
+        <button class="add-cart" onclick="addToCart()">
+            Add to Cart
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- PRODUCT 5 -->
+
+<div class="product-card" data-category="powerbank">
+
+    <button class="favorite" onclick="favorite(this)">
+        ♡
+    </button>
+
+    <div class="product-image">
+        🔋
+    </div>
+
+    <div class="product-info">
+
+        <h3>10000mAh Power Bank</h3>
+
+        <div class="category-name">
+            Power Bank
+        </div>
+
+        <div class="price">
+            ₹999
+            <span class="old-price">₹1,499</span>
+        </div>
+
+        <button class="add-cart" onclick="addToCart()">
+            Add to Cart
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- PRODUCT 6 -->
+
+<div class="product-card" data-category="charger">
+
+    <button class="favorite" onclick="favorite(this)">
+        ♡
+    </button>
+
+    <div class="product-image">
+        ⚡
+    </div>
+
+    <div class="product-info">
+
+        <h3>Type-C Fast Cable</h3>
+
+        <div class="category-name">
+            Charging Cable
+        </div>
+
+        <div class="price">
+            ₹199
+            <span class="old-price">₹299</span>
+        </div>
+
+        <button class="add-cart" onclick="addToCart()">
+            Add to Cart
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- PRODUCT 7 -->
+
+<div class="product-card" data-category="cover">
+
+    <button class="favorite" onclick="favorite(this)">
+        ♡
+    </button>
+
+    <div class="product-image">
+        📲
+    </div>
+
+    <div class="product-info">
+
+        <h3>Transparent Phone Case</h3>
+
+        <div class="category-name">
+            Back Cover
+        </div>
+
+        <div class="price">
+            ₹199
+            <span class="old-price">₹299</span>
+        </div>
+
+        <button class="add-cart" onclick="addToCart()">
+            Add to Cart
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- PRODUCT 8 -->
+
+<div class="product-card" data-category="earphone">
+
+    <button class="favorite" onclick="favorite(this)">
+        ♡
+    </button>
+
+    <div class="product-image">
+        🎵
+    </div>
+
+    <div class="product-info">
+
+        <h3>Bluetooth Neckband</h3>
+
+        <div class="category-name">
+            Earphones
+        </div>
+
+        <div class="price">
+            ₹699
+            <span class="old-price">₹999</span>
+        </div>
+
+        <button class="add-cart" onclick="addToCart()">
+            Add to Cart
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <h3>GadgetZone</h3>
+
+    <p>
+        Quality accessories for your everyday gadgets.
+    </p>
+
+    <p>
+        © 2026 GadgetZone. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<script>
+
+/* CART */
+
+let cartCount = 0;
+
+function addToCart() {
+
+    cartCount++;
+
+    document.getElementById("cartCount").innerText = cartCount;
+
+    alert("✅ Product added to cart!");
+
+}
+
+
+/* FAVORITE */
+
+function favorite(button) {
+
+    if(button.innerText === "♡") {
+
+        button.innerText = "❤️";
+
+    } else {
+
+        button.innerText = "♡";
+
+    }
+
+}
+
+
+/* CATEGORY FILTER */
+
+function filterProducts(category) {
+
+    let products =
+        document.querySelectorAll(".product-card");
+
+    products.forEach(product => {
+
+        if(category === "all") {
+
+            product.style.display = "block";
+
+        } else {
+
+            if(product.dataset.category === category) {
+
+                product.style.display = "block";
+
+            } else {
+
+                product.style.display = "none";
+
+            }
+
+        }
+
+    });
+
+}
+
+
+/* SEARCH */
+
+document.getElementById("search")
+.addEventListener("input", function() {
+
+    let search =
+        this.value.toLowerCase();
+
+    let products =
+        document.querySelectorAll(".product-card");
+
+    products.forEach(product => {
+
+        let name =
+            product.querySelector("h3")
+            .innerText
+            .toLowerCase();
+
+        if(name.includes(search)) {
+
+            product.style.display = "block";
+
+        } else {
+
+            product.style.display = "none";
+
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
